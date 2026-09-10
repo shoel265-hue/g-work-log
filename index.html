@@ -626,7 +626,7 @@
         const workDate = document.getElementById("work-date").value;
         if (!workDate) return;
 
-        // 1. 초기화 작업 수행
+        // 1. 화면 초기화
         const workerRows = document.querySelectorAll(".worker-row");
         workerRows.forEach((row, idx) => {
             row.querySelector(".w-name").value = (idx === 0) ? "이욱호" : "";
@@ -707,10 +707,9 @@
                     });
                 }
 
-                // 서버에 저장된 근무자 데이터가 있으면 정상적으로 매핑
+                // 근무자 데이터 안전 매핑
                 if (data.workers && Array.isArray(data.workers) && data.workers.length > 0) {
-                    const rows = document.querySelectorAll(".worker-row");
-                    rows.forEach((row, idx) => {
+                    workerRows.forEach((row, idx) => {
                         if (data.workers[idx]) {
                             row.querySelector(".w-name").value = data.workers[idx].name || "";
                             row.querySelector(".w-jugan").value = data.workers[idx].jugan || "";
